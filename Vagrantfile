@@ -10,6 +10,13 @@ Vagrant::Config.run do |config|
     puppet.manifests_path = "manifests"
     puppet.module_path = "modules"
   end
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["cookbooks"]
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "git"
+    chef.add_recipe "htop"
+  end
 
   config.vm.define :master do |master_conf|
     master_conf.vm.host_name = "master"

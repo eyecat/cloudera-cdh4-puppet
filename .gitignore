@@ -1,6 +1,7 @@
 .vagrant
 *~
 *.swp
-
+tmp
+cookbooks
 modules/java/files/deb/
 
