@@ -4,7 +4,7 @@
 Vagrant::Config.run do |config|
   config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
   config.vm.box = "precise64"
-  config.vm.provision :shell, :path => "bootstrap.sh"
+  config.vm.provision :shell, :path => "bootstrap.sh", :args => ""
   config.vm.provision :puppet do |puppet|
     puppet.manifest_file = "site.pp"
     puppet.manifests_path = "manifests"
