@@ -1,7 +1,9 @@
 .vagrant
 *~
 *.swp
+*.bak
 tmp
 cookbooks
 modules/java/files/deb/
-
+.tmp/
+.librarian/

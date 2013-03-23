@@ -7,5 +7,4 @@ node master {
   include hadoop::namenode
   include hadoop::jobtracker
   include hadoop::datanode
-
 }

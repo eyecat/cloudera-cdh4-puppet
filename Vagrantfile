@@ -8,14 +8,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :puppet do |puppet|
     puppet.manifest_file = "site.pp"
     puppet.manifests_path = "manifests"
-    puppet.module_path = "modules"
-  end
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks"]
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "git"
-    chef.add_recipe "htop"
+    puppet.module_path = ["modules"]
   end
 
   config.vm.define :master do |master_conf|
@@ -24,6 +17,15 @@ Vagrant::Config.run do |config|
     master_conf.vm.customize ["modifyvm", :id, "--memory", "768"]
     master_conf.vm.customize ["modifyvm", :id, "--name", "master"]
     master_conf.vm.customize ["modifyvm", :id, "--cpus", 1]
+    master_conf.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = ["cookbooks","vendor_cookbooks"]
+      chef.add_recipe "apt"
+      chef.add_recipe "build-essential"
+      chef.add_recipe "git"
+      chef.add_recipe "htop"
+      chef.add_recipe "rstudio"
+      chef.add_recipe "r"
+    end
   end
 
   (1..2).each do |i|
@@ -34,6 +36,11 @@ Vagrant::Config.run do |config|
       slave_conf.vm.customize ["modifyvm", :id, "--memory", "512"]
       slave_conf.vm.customize ["modifyvm", :id, "--name", vmname]
       slave_conf.vm.customize ["modifyvm", :id, "--cpus", 1]
+      slave_conf.vm.provision :chef_solo do |chef|
+        chef.cookbooks_path = ["cookbooks","vendor_cookbooks"]
+        chef.add_recipe "apt"
+        chef.add_recipe "r"
+      end
     end
   end
 end
