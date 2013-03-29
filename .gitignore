@@ -7,3 +7,5 @@ cookbooks
 modules/java/files/deb/
 .tmp/
 .librarian/
+.chef/*.pem
+

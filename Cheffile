@@ -9,6 +9,9 @@ cookbook 'git',
 cookbook 'build-essential'
 cookbook 'openvpn'
 cookbook 'htop'
+cookbook 'python'
+cookbook 'chef-server', 
+  git: 'https://github.com/opscode-cookbooks/chef-server.git'
 
 # cookbook 'chef-client'
 

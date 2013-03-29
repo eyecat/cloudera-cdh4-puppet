@@ -18,6 +18,7 @@ Vagrant::Config.run do |config|
     master_conf.vm.customize ["modifyvm", :id, "--name", "master"]
     master_conf.vm.customize ["modifyvm", :id, "--cpus", 1]
     master_conf.vm.provision :chef_solo do |chef|
+      chef.roles_path = "roles"
       chef.cookbooks_path = ["cookbooks","vendor_cookbooks"]
       chef.add_recipe "apt"
       chef.add_recipe "build-essential"
@@ -25,7 +26,11 @@ Vagrant::Config.run do |config|
       chef.add_recipe "htop"
       chef.add_recipe "rstudio"
       chef.add_recipe "r"
+      chef.add_recipe "python::pip"
+      chef.add_recipe "hadoop-python"
+      chef.add_role "chef"
     end
+    master_conf.vm.provision :shell, :path => "post-bootstrap.sh", :args => ""
   end
 
   (1..2).each do |i|
@@ -36,11 +41,13 @@ Vagrant::Config.run do |config|
       slave_conf.vm.customize ["modifyvm", :id, "--memory", "512"]
       slave_conf.vm.customize ["modifyvm", :id, "--name", vmname]
       slave_conf.vm.customize ["modifyvm", :id, "--cpus", 1]
-      slave_conf.vm.provision :chef_solo do |chef|
-        chef.cookbooks_path = ["cookbooks","vendor_cookbooks"]
-        chef.add_recipe "apt"
-        chef.add_recipe "r"
-      end
+#      slave_conf.vm.provision :chef_solo do |chef|
+#        chef.cookbooks_path = ["cookbooks","vendor_cookbooks"]
+#        chef.add_recipe "apt"
+#        chef.add_recipe "r"
+#        chef.add_recipe "python::pip"
+#        chef.add_recipe "hadoop-python"
+#      end
     end
   end
 end

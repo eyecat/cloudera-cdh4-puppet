@@ -33,11 +33,7 @@ package "r-base-core" do
   action :install
 end
 
-package "r-cran-rmpi" do
-  action :install
-end
-
-package "r-cran-snow" do
-  action :install
-end
+package "r-cran-rmpi"
+package "r-cran-snow"
+package "python-rpy2"
 
