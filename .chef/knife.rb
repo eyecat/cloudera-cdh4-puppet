@@ -9,3 +9,5 @@ cache_type               'BasicFile'
 cache_options( :path => 'checksums' )
 cookbook_path [ "cookbooks", "site-cookbooks"]
 
+knife[:ssh_attribute] = "vagrant"
+knife[:ssh_password] = "vagrant"
