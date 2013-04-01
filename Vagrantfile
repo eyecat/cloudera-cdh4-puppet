@@ -41,13 +41,10 @@ Vagrant::Config.run do |config|
       slave_conf.vm.customize ["modifyvm", :id, "--memory", "512"]
       slave_conf.vm.customize ["modifyvm", :id, "--name", vmname]
       slave_conf.vm.customize ["modifyvm", :id, "--cpus", 1]
-#      slave_conf.vm.provision :chef_solo do |chef|
-#        chef.cookbooks_path = ["cookbooks","site-cookbooks"]
-#        chef.add_recipe "apt"
-#        chef.add_recipe "r"
-#        chef.add_recipe "python::pip"
-#        chef.add_recipe "hadoop-python"
-#      end
+      slave_conf.vm.provision :chef_solo do |chef|
+        chef.cookbooks_path = ["cookbooks","site-cookbooks"]
+        chef.add_recipe "apt"
+      end
     end
   end
 end
