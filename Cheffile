@@ -13,6 +13,8 @@ cookbook 'python'
 cookbook 'chef-server', 
   git: 'https://github.com/opscode-cookbooks/chef-server.git'
 cookbook 'squid'
+cookbook 'disco',
+  git: 'git://github.com/eyecat/cookbook-disco.git'
 
 # cookbook 'chef-client'
 

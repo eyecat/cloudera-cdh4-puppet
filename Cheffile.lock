@@ -1,17 +1,29 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apt (1.9.0)
+    apt (1.9.2)
     build-essential (1.3.4)
     htop (1.0.0)
     openvpn (1.1.0)
     python (1.2.2)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
-    runit (1.1.0)
+    runit (1.1.2)
       build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
+    simple_iptables (0.3.0)
     squid (0.2.2)
     yum (2.2.0)
+
+GIT
+  remote: git://github.com/eyecat/cookbook-disco.git
+  ref: master
+  sha: 74d63ea0d113f363f0cf9ff96fea165af0e1380b
+  specs:
+    disco (0.1.2)
+      build-essential (>= 1.0.0)
+      python (>= 1.0.6)
+      simple_iptables (>= 0.1.0)
 
 GIT
   remote: https://github.com/fnichol/chef-git.git
@@ -24,7 +36,7 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/chef-server.git
   ref: master
-  sha: a8fb304a7cba7fd3c710a2c175bc08a48007179c
+  sha: 068c4b5e4e6fdea61c70dde7ced9cb31bc3663f7
   specs:
     chef-server (2.0.0)
 
@@ -32,6 +44,7 @@ DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
   chef-server (>= 0)
+  disco (>= 0)
   git (>= 0)
   htop (>= 0)
   openvpn (>= 0)
